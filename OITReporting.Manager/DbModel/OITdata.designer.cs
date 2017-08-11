@@ -22,6 +22,7 @@ namespace OITReporting.Manager.DbModel
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="OITReporting")]
 	public partial class OITdataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -29,7 +30,25 @@ namespace OITReporting.Manager.DbModel
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertclientMaster(clientMaster instance);
+    partial void UpdateclientMaster(clientMaster instance);
+    partial void DeleteclientMaster(clientMaster instance);
+    partial void InsertdomainMaster(domainMaster instance);
+    partial void UpdatedomainMaster(domainMaster instance);
+    partial void DeletedomainMaster(domainMaster instance);
+    partial void InsertemailSendingHistory(emailSendingHistory instance);
+    partial void UpdateemailSendingHistory(emailSendingHistory instance);
+    partial void DeleteemailSendingHistory(emailSendingHistory instance);
+    partial void InsertuserMaster(userMaster instance);
+    partial void UpdateuserMaster(userMaster instance);
+    partial void DeleteuserMaster(userMaster instance);
     #endregion
+		
+		public OITdataDataContext() : 
+				base(global::OITReporting.Manager.Properties.Settings.Default.OITReportingConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public OITdataDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -53,6 +72,1289 @@ namespace OITReporting.Manager.DbModel
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<clientMaster> clientMasters
+		{
+			get
+			{
+				return this.GetTable<clientMaster>();
+			}
+		}
+		
+		public System.Data.Linq.Table<domainMaster> domainMasters
+		{
+			get
+			{
+				return this.GetTable<domainMaster>();
+			}
+		}
+		
+		public System.Data.Linq.Table<emailSendingHistory> emailSendingHistories
+		{
+			get
+			{
+				return this.GetTable<emailSendingHistory>();
+			}
+		}
+		
+		public System.Data.Linq.Table<userMaster> userMasters
+		{
+			get
+			{
+				return this.GetTable<userMaster>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.clientMaster")]
+	public partial class clientMaster : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _clientId;
+		
+		private int _userId;
+		
+		private int _domainId;
+		
+		private string _status;
+		
+		private string _emailId;
+		
+		private string _companyName;
+		
+		private string _ContactPersonName;
+		
+		private string _ContactPersonDesignation;
+		
+		private decimal _contactPersonContactNo1;
+		
+		private System.Nullable<decimal> _contactPersonContactNo2;
+		
+		private System.Nullable<decimal> _companyCellPhone;
+		
+		private string _address;
+		
+		private string _city;
+		
+		private string _state;
+		
+		private int _counytryId;
+		
+		private System.Nullable<bool> _isResponded;
+		
+		private System.Nullable<bool> _isUnsubscribe;
+		
+		private EntityRef<emailSendingHistory> _emailSendingHistory;
+		
+		private EntityRef<domainMaster> _domainMaster;
+		
+		private EntityRef<userMaster> _userMaster;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnclientIdChanging(int value);
+    partial void OnclientIdChanged();
+    partial void OnuserIdChanging(int value);
+    partial void OnuserIdChanged();
+    partial void OndomainIdChanging(int value);
+    partial void OndomainIdChanged();
+    partial void OnstatusChanging(string value);
+    partial void OnstatusChanged();
+    partial void OnemailIdChanging(string value);
+    partial void OnemailIdChanged();
+    partial void OncompanyNameChanging(string value);
+    partial void OncompanyNameChanged();
+    partial void OnContactPersonNameChanging(string value);
+    partial void OnContactPersonNameChanged();
+    partial void OnContactPersonDesignationChanging(string value);
+    partial void OnContactPersonDesignationChanged();
+    partial void OncontactPersonContactNo1Changing(decimal value);
+    partial void OncontactPersonContactNo1Changed();
+    partial void OncontactPersonContactNo2Changing(System.Nullable<decimal> value);
+    partial void OncontactPersonContactNo2Changed();
+    partial void OncompanyCellPhoneChanging(System.Nullable<decimal> value);
+    partial void OncompanyCellPhoneChanged();
+    partial void OnaddressChanging(string value);
+    partial void OnaddressChanged();
+    partial void OncityChanging(string value);
+    partial void OncityChanged();
+    partial void OnstateChanging(string value);
+    partial void OnstateChanged();
+    partial void OncounytryIdChanging(int value);
+    partial void OncounytryIdChanged();
+    partial void OnisRespondedChanging(System.Nullable<bool> value);
+    partial void OnisRespondedChanged();
+    partial void OnisUnsubscribeChanging(System.Nullable<bool> value);
+    partial void OnisUnsubscribeChanged();
+    #endregion
+		
+		public clientMaster()
+		{
+			this._emailSendingHistory = default(EntityRef<emailSendingHistory>);
+			this._domainMaster = default(EntityRef<domainMaster>);
+			this._userMaster = default(EntityRef<userMaster>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int clientId
+		{
+			get
+			{
+				return this._clientId;
+			}
+			set
+			{
+				if ((this._clientId != value))
+				{
+					this.OnclientIdChanging(value);
+					this.SendPropertyChanging();
+					this._clientId = value;
+					this.SendPropertyChanged("clientId");
+					this.OnclientIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="Int NOT NULL")]
+		public int userId
+		{
+			get
+			{
+				return this._userId;
+			}
+			set
+			{
+				if ((this._userId != value))
+				{
+					if (this._userMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnuserIdChanging(value);
+					this.SendPropertyChanging();
+					this._userId = value;
+					this.SendPropertyChanged("userId");
+					this.OnuserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_domainId", DbType="Int NOT NULL")]
+		public int domainId
+		{
+			get
+			{
+				return this._domainId;
+			}
+			set
+			{
+				if ((this._domainId != value))
+				{
+					if (this._domainMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OndomainIdChanging(value);
+					this.SendPropertyChanging();
+					this._domainId = value;
+					this.SendPropertyChanged("domainId");
+					this.OndomainIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this.OnstatusChanging(value);
+					this.SendPropertyChanging();
+					this._status = value;
+					this.SendPropertyChanged("status");
+					this.OnstatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailId", DbType="NVarChar(80) NOT NULL", CanBeNull=false)]
+		public string emailId
+		{
+			get
+			{
+				return this._emailId;
+			}
+			set
+			{
+				if ((this._emailId != value))
+				{
+					this.OnemailIdChanging(value);
+					this.SendPropertyChanging();
+					this._emailId = value;
+					this.SendPropertyChanged("emailId");
+					this.OnemailIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_companyName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string companyName
+		{
+			get
+			{
+				return this._companyName;
+			}
+			set
+			{
+				if ((this._companyName != value))
+				{
+					this.OncompanyNameChanging(value);
+					this.SendPropertyChanging();
+					this._companyName = value;
+					this.SendPropertyChanged("companyName");
+					this.OncompanyNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonName", DbType="NVarChar(80) NOT NULL", CanBeNull=false)]
+		public string ContactPersonName
+		{
+			get
+			{
+				return this._ContactPersonName;
+			}
+			set
+			{
+				if ((this._ContactPersonName != value))
+				{
+					this.OnContactPersonNameChanging(value);
+					this.SendPropertyChanging();
+					this._ContactPersonName = value;
+					this.SendPropertyChanged("ContactPersonName");
+					this.OnContactPersonNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonDesignation", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string ContactPersonDesignation
+		{
+			get
+			{
+				return this._ContactPersonDesignation;
+			}
+			set
+			{
+				if ((this._ContactPersonDesignation != value))
+				{
+					this.OnContactPersonDesignationChanging(value);
+					this.SendPropertyChanging();
+					this._ContactPersonDesignation = value;
+					this.SendPropertyChanged("ContactPersonDesignation");
+					this.OnContactPersonDesignationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactPersonContactNo1", DbType="Decimal(10,0) NOT NULL")]
+		public decimal contactPersonContactNo1
+		{
+			get
+			{
+				return this._contactPersonContactNo1;
+			}
+			set
+			{
+				if ((this._contactPersonContactNo1 != value))
+				{
+					this.OncontactPersonContactNo1Changing(value);
+					this.SendPropertyChanging();
+					this._contactPersonContactNo1 = value;
+					this.SendPropertyChanged("contactPersonContactNo1");
+					this.OncontactPersonContactNo1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactPersonContactNo2", DbType="Decimal(10,0)")]
+		public System.Nullable<decimal> contactPersonContactNo2
+		{
+			get
+			{
+				return this._contactPersonContactNo2;
+			}
+			set
+			{
+				if ((this._contactPersonContactNo2 != value))
+				{
+					this.OncontactPersonContactNo2Changing(value);
+					this.SendPropertyChanging();
+					this._contactPersonContactNo2 = value;
+					this.SendPropertyChanged("contactPersonContactNo2");
+					this.OncontactPersonContactNo2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_companyCellPhone", DbType="Decimal(10,0)")]
+		public System.Nullable<decimal> companyCellPhone
+		{
+			get
+			{
+				return this._companyCellPhone;
+			}
+			set
+			{
+				if ((this._companyCellPhone != value))
+				{
+					this.OncompanyCellPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._companyCellPhone = value;
+					this.SendPropertyChanged("companyCellPhone");
+					this.OncompanyCellPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string address
+		{
+			get
+			{
+				return this._address;
+			}
+			set
+			{
+				if ((this._address != value))
+				{
+					this.OnaddressChanging(value);
+					this.SendPropertyChanging();
+					this._address = value;
+					this.SendPropertyChanged("address");
+					this.OnaddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this.OncityChanging(value);
+					this.SendPropertyChanging();
+					this._city = value;
+					this.SendPropertyChanged("city");
+					this.OncityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this.OnstateChanging(value);
+					this.SendPropertyChanging();
+					this._state = value;
+					this.SendPropertyChanged("state");
+					this.OnstateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_counytryId", DbType="Int NOT NULL")]
+		public int counytryId
+		{
+			get
+			{
+				return this._counytryId;
+			}
+			set
+			{
+				if ((this._counytryId != value))
+				{
+					this.OncounytryIdChanging(value);
+					this.SendPropertyChanging();
+					this._counytryId = value;
+					this.SendPropertyChanged("counytryId");
+					this.OncounytryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isResponded", DbType="Bit")]
+		public System.Nullable<bool> isResponded
+		{
+			get
+			{
+				return this._isResponded;
+			}
+			set
+			{
+				if ((this._isResponded != value))
+				{
+					this.OnisRespondedChanging(value);
+					this.SendPropertyChanging();
+					this._isResponded = value;
+					this.SendPropertyChanged("isResponded");
+					this.OnisRespondedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isUnsubscribe", DbType="Bit")]
+		public System.Nullable<bool> isUnsubscribe
+		{
+			get
+			{
+				return this._isUnsubscribe;
+			}
+			set
+			{
+				if ((this._isUnsubscribe != value))
+				{
+					this.OnisUnsubscribeChanging(value);
+					this.SendPropertyChanging();
+					this._isUnsubscribe = value;
+					this.SendPropertyChanged("isUnsubscribe");
+					this.OnisUnsubscribeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="clientMaster_emailSendingHistory", Storage="_emailSendingHistory", ThisKey="clientId", OtherKey="id", IsUnique=true, IsForeignKey=false)]
+		public emailSendingHistory emailSendingHistory
+		{
+			get
+			{
+				return this._emailSendingHistory.Entity;
+			}
+			set
+			{
+				emailSendingHistory previousValue = this._emailSendingHistory.Entity;
+				if (((previousValue != value) 
+							|| (this._emailSendingHistory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._emailSendingHistory.Entity = null;
+						previousValue.clientMaster = null;
+					}
+					this._emailSendingHistory.Entity = value;
+					if ((value != null))
+					{
+						value.clientMaster = this;
+					}
+					this.SendPropertyChanged("emailSendingHistory");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="domainMaster_clientMaster", Storage="_domainMaster", ThisKey="domainId", OtherKey="domainId", IsForeignKey=true)]
+		public domainMaster domainMaster
+		{
+			get
+			{
+				return this._domainMaster.Entity;
+			}
+			set
+			{
+				domainMaster previousValue = this._domainMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._domainMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._domainMaster.Entity = null;
+						previousValue.clientMasters.Remove(this);
+					}
+					this._domainMaster.Entity = value;
+					if ((value != null))
+					{
+						value.clientMasters.Add(this);
+						this._domainId = value.domainId;
+					}
+					else
+					{
+						this._domainId = default(int);
+					}
+					this.SendPropertyChanged("domainMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userMaster_clientMaster", Storage="_userMaster", ThisKey="userId", OtherKey="userId", IsForeignKey=true)]
+		public userMaster userMaster
+		{
+			get
+			{
+				return this._userMaster.Entity;
+			}
+			set
+			{
+				userMaster previousValue = this._userMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._userMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._userMaster.Entity = null;
+						previousValue.clientMasters.Remove(this);
+					}
+					this._userMaster.Entity = value;
+					if ((value != null))
+					{
+						value.clientMasters.Add(this);
+						this._userId = value.userId;
+					}
+					else
+					{
+						this._userId = default(int);
+					}
+					this.SendPropertyChanged("userMaster");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.domainMaster")]
+	public partial class domainMaster : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _domainId;
+		
+		private string _domainName;
+		
+		private EntitySet<clientMaster> _clientMasters;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OndomainIdChanging(int value);
+    partial void OndomainIdChanged();
+    partial void OndomainNameChanging(string value);
+    partial void OndomainNameChanged();
+    #endregion
+		
+		public domainMaster()
+		{
+			this._clientMasters = new EntitySet<clientMaster>(new Action<clientMaster>(this.attach_clientMasters), new Action<clientMaster>(this.detach_clientMasters));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_domainId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int domainId
+		{
+			get
+			{
+				return this._domainId;
+			}
+			set
+			{
+				if ((this._domainId != value))
+				{
+					this.OndomainIdChanging(value);
+					this.SendPropertyChanging();
+					this._domainId = value;
+					this.SendPropertyChanged("domainId");
+					this.OndomainIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_domainName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string domainName
+		{
+			get
+			{
+				return this._domainName;
+			}
+			set
+			{
+				if ((this._domainName != value))
+				{
+					this.OndomainNameChanging(value);
+					this.SendPropertyChanging();
+					this._domainName = value;
+					this.SendPropertyChanged("domainName");
+					this.OndomainNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="domainMaster_clientMaster", Storage="_clientMasters", ThisKey="domainId", OtherKey="domainId")]
+		public EntitySet<clientMaster> clientMasters
+		{
+			get
+			{
+				return this._clientMasters;
+			}
+			set
+			{
+				this._clientMasters.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_clientMasters(clientMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.domainMaster = this;
+		}
+		
+		private void detach_clientMasters(clientMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.domainMaster = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.emailSendingHistory")]
+	public partial class emailSendingHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _clientId;
+		
+		private System.DateTime _emailDate;
+		
+		private string _emailType;
+		
+		private System.Nullable<bool> _isResponded;
+		
+		private System.Nullable<bool> _isUnsubscribe;
+		
+		private EntityRef<clientMaster> _clientMaster;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnclientIdChanging(int value);
+    partial void OnclientIdChanged();
+    partial void OnemailDateChanging(System.DateTime value);
+    partial void OnemailDateChanged();
+    partial void OnemailTypeChanging(string value);
+    partial void OnemailTypeChanged();
+    partial void OnisRespondedChanging(System.Nullable<bool> value);
+    partial void OnisRespondedChanged();
+    partial void OnisUnsubscribeChanging(System.Nullable<bool> value);
+    partial void OnisUnsubscribeChanged();
+    #endregion
+		
+		public emailSendingHistory()
+		{
+			this._clientMaster = default(EntityRef<clientMaster>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					if (this._clientMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientId", DbType="Int NOT NULL")]
+		public int clientId
+		{
+			get
+			{
+				return this._clientId;
+			}
+			set
+			{
+				if ((this._clientId != value))
+				{
+					this.OnclientIdChanging(value);
+					this.SendPropertyChanging();
+					this._clientId = value;
+					this.SendPropertyChanged("clientId");
+					this.OnclientIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailDate", DbType="DateTime NOT NULL")]
+		public System.DateTime emailDate
+		{
+			get
+			{
+				return this._emailDate;
+			}
+			set
+			{
+				if ((this._emailDate != value))
+				{
+					this.OnemailDateChanging(value);
+					this.SendPropertyChanging();
+					this._emailDate = value;
+					this.SendPropertyChanged("emailDate");
+					this.OnemailDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string emailType
+		{
+			get
+			{
+				return this._emailType;
+			}
+			set
+			{
+				if ((this._emailType != value))
+				{
+					this.OnemailTypeChanging(value);
+					this.SendPropertyChanging();
+					this._emailType = value;
+					this.SendPropertyChanged("emailType");
+					this.OnemailTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isResponded", DbType="Bit")]
+		public System.Nullable<bool> isResponded
+		{
+			get
+			{
+				return this._isResponded;
+			}
+			set
+			{
+				if ((this._isResponded != value))
+				{
+					this.OnisRespondedChanging(value);
+					this.SendPropertyChanging();
+					this._isResponded = value;
+					this.SendPropertyChanged("isResponded");
+					this.OnisRespondedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isUnsubscribe", DbType="Bit")]
+		public System.Nullable<bool> isUnsubscribe
+		{
+			get
+			{
+				return this._isUnsubscribe;
+			}
+			set
+			{
+				if ((this._isUnsubscribe != value))
+				{
+					this.OnisUnsubscribeChanging(value);
+					this.SendPropertyChanging();
+					this._isUnsubscribe = value;
+					this.SendPropertyChanged("isUnsubscribe");
+					this.OnisUnsubscribeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="clientMaster_emailSendingHistory", Storage="_clientMaster", ThisKey="id", OtherKey="clientId", IsForeignKey=true)]
+		public clientMaster clientMaster
+		{
+			get
+			{
+				return this._clientMaster.Entity;
+			}
+			set
+			{
+				clientMaster previousValue = this._clientMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._clientMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._clientMaster.Entity = null;
+						previousValue.emailSendingHistory = null;
+					}
+					this._clientMaster.Entity = value;
+					if ((value != null))
+					{
+						value.emailSendingHistory = this;
+						this._id = value.clientId;
+					}
+					else
+					{
+						this._id = default(int);
+					}
+					this.SendPropertyChanged("clientMaster");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.userMaster")]
+	public partial class userMaster : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _userId;
+		
+		private string _firstName;
+		
+		private string _lastName;
+		
+		private System.DateTime _dob;
+		
+		private string _gender;
+		
+		private string _address;
+		
+		private string _city;
+		
+		private string _state;
+		
+		private int _countryId;
+		
+		private decimal _contactNo;
+		
+		private string _emailID;
+		
+		private string _password;
+		
+		private EntitySet<clientMaster> _clientMasters;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnuserIdChanging(int value);
+    partial void OnuserIdChanged();
+    partial void OnfirstNameChanging(string value);
+    partial void OnfirstNameChanged();
+    partial void OnlastNameChanging(string value);
+    partial void OnlastNameChanged();
+    partial void OndobChanging(System.DateTime value);
+    partial void OndobChanged();
+    partial void OngenderChanging(string value);
+    partial void OngenderChanged();
+    partial void OnaddressChanging(string value);
+    partial void OnaddressChanged();
+    partial void OncityChanging(string value);
+    partial void OncityChanged();
+    partial void OnstateChanging(string value);
+    partial void OnstateChanged();
+    partial void OncountryIdChanging(int value);
+    partial void OncountryIdChanged();
+    partial void OncontactNoChanging(decimal value);
+    partial void OncontactNoChanged();
+    partial void OnemailIDChanging(string value);
+    partial void OnemailIDChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    #endregion
+		
+		public userMaster()
+		{
+			this._clientMasters = new EntitySet<clientMaster>(new Action<clientMaster>(this.attach_clientMasters), new Action<clientMaster>(this.detach_clientMasters));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int userId
+		{
+			get
+			{
+				return this._userId;
+			}
+			set
+			{
+				if ((this._userId != value))
+				{
+					this.OnuserIdChanging(value);
+					this.SendPropertyChanging();
+					this._userId = value;
+					this.SendPropertyChanged("userId");
+					this.OnuserIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_firstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string firstName
+		{
+			get
+			{
+				return this._firstName;
+			}
+			set
+			{
+				if ((this._firstName != value))
+				{
+					this.OnfirstNameChanging(value);
+					this.SendPropertyChanging();
+					this._firstName = value;
+					this.SendPropertyChanged("firstName");
+					this.OnfirstNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string lastName
+		{
+			get
+			{
+				return this._lastName;
+			}
+			set
+			{
+				if ((this._lastName != value))
+				{
+					this.OnlastNameChanging(value);
+					this.SendPropertyChanging();
+					this._lastName = value;
+					this.SendPropertyChanged("lastName");
+					this.OnlastNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dob", DbType="Date NOT NULL")]
+		public System.DateTime dob
+		{
+			get
+			{
+				return this._dob;
+			}
+			set
+			{
+				if ((this._dob != value))
+				{
+					this.OndobChanging(value);
+					this.SendPropertyChanging();
+					this._dob = value;
+					this.SendPropertyChanged("dob");
+					this.OndobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gender", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string gender
+		{
+			get
+			{
+				return this._gender;
+			}
+			set
+			{
+				if ((this._gender != value))
+				{
+					this.OngenderChanging(value);
+					this.SendPropertyChanging();
+					this._gender = value;
+					this.SendPropertyChanged("gender");
+					this.OngenderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string address
+		{
+			get
+			{
+				return this._address;
+			}
+			set
+			{
+				if ((this._address != value))
+				{
+					this.OnaddressChanging(value);
+					this.SendPropertyChanging();
+					this._address = value;
+					this.SendPropertyChanged("address");
+					this.OnaddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this.OncityChanging(value);
+					this.SendPropertyChanging();
+					this._city = value;
+					this.SendPropertyChanged("city");
+					this.OncityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this.OnstateChanging(value);
+					this.SendPropertyChanging();
+					this._state = value;
+					this.SendPropertyChanged("state");
+					this.OnstateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_countryId", DbType="Int NOT NULL")]
+		public int countryId
+		{
+			get
+			{
+				return this._countryId;
+			}
+			set
+			{
+				if ((this._countryId != value))
+				{
+					this.OncountryIdChanging(value);
+					this.SendPropertyChanging();
+					this._countryId = value;
+					this.SendPropertyChanged("countryId");
+					this.OncountryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactNo", DbType="Decimal(10,0) NOT NULL")]
+		public decimal contactNo
+		{
+			get
+			{
+				return this._contactNo;
+			}
+			set
+			{
+				if ((this._contactNo != value))
+				{
+					this.OncontactNoChanging(value);
+					this.SendPropertyChanging();
+					this._contactNo = value;
+					this.SendPropertyChanged("contactNo");
+					this.OncontactNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailID", DbType="NVarChar(80) NOT NULL", CanBeNull=false)]
+		public string emailID
+		{
+			get
+			{
+				return this._emailID;
+			}
+			set
+			{
+				if ((this._emailID != value))
+				{
+					this.OnemailIDChanging(value);
+					this.SendPropertyChanging();
+					this._emailID = value;
+					this.SendPropertyChanged("emailID");
+					this.OnemailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this.OnpasswordChanging(value);
+					this.SendPropertyChanging();
+					this._password = value;
+					this.SendPropertyChanged("password");
+					this.OnpasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="userMaster_clientMaster", Storage="_clientMasters", ThisKey="userId", OtherKey="userId")]
+		public EntitySet<clientMaster> clientMasters
+		{
+			get
+			{
+				return this._clientMasters;
+			}
+			set
+			{
+				this._clientMasters.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_clientMasters(clientMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.userMaster = this;
+		}
+		
+		private void detach_clientMasters(clientMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.userMaster = null;
 		}
 	}
 }
