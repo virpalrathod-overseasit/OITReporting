@@ -204,6 +204,19 @@
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OITReporting.Common\OITReporting.Common.csproj">
+      <Project>{0eb7a379-a740-49e7-ac14-88b27fa488a9}</Project>
+      <Name>OITReporting.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OITReporting.Manager\OITReporting.Manager.csproj">
+      <Project>{1b8429a4-f42a-4627-8cd7-8d3c7151034e}</Project>
+      <Name>OITReporting.Manager</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
