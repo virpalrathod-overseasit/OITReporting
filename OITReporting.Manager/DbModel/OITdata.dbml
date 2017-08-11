@@ -1,1 +1,62 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="OITReporting" Class="OITdataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=VIRPALSINH;Initial Catalog=OITReporting;Integrated Security=True" SettingsObjectName="OITReporting.Manager.Properties.Settings" SettingsPropertyName="OITReportingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.clientMaster" Member="clientMasters">
+    <Type Name="clientMaster">
+      <Column Name="clientId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="domainId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="emailId" Type="System.String" DbType="NVarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="companyName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonName" Type="System.String" DbType="NVarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactPersonDesignation" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="contactPersonContactNo1" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
+      <Column Name="contactPersonContactNo2" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
+      <Column Name="companyCellPhone" Type="System.Decimal" DbType="Decimal(10,0)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="city" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="state" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="counytryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="isResponded" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isUnsubscribe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="clientMaster_emailSendingHistory" Member="emailSendingHistory" ThisKey="clientId" OtherKey="id" Type="emailSendingHistory" Cardinality="One" />
+      <Association Name="domainMaster_clientMaster" Member="domainMaster" ThisKey="domainId" OtherKey="domainId" Type="domainMaster" IsForeignKey="true" />
+      <Association Name="userMaster_clientMaster" Member="userMaster" ThisKey="userId" OtherKey="userId" Type="userMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.domainMaster" Member="domainMasters">
+    <Type Name="domainMaster">
+      <Column Name="domainId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="domainName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="domainMaster_clientMaster" Member="clientMasters" ThisKey="domainId" OtherKey="domainId" Type="clientMaster" />
+    </Type>
+  </Table>
+  <Table Name="dbo.emailSendingHistory" Member="emailSendingHistories">
+    <Type Name="emailSendingHistory">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="clientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="emailDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="emailType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="isResponded" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="isUnsubscribe" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="clientMaster_emailSendingHistory" Member="clientMaster" ThisKey="id" OtherKey="clientId" Type="clientMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.userMaster" Member="userMasters">
+    <Type Name="userMaster">
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="lastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="dob" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="city" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="state" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="countryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="contactNo" Type="System.Decimal" DbType="Decimal(10,0) NOT NULL" CanBeNull="false" />
+      <Column Name="emailID" Type="System.String" DbType="NVarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="userMaster_clientMaster" Member="clientMasters" ThisKey="userId" OtherKey="userId" Type="clientMaster" />
+    </Type>
+  </Table>
+</Database>

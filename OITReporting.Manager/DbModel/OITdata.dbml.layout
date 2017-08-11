@@ -1,1 +1,51 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="OITdata">
+  <DataContextMoniker Name="/OITdataDataContext" />
+  <nestedChildShapes>
+    <classShape Id="5c9f750a-7567-4aee-9c7d-37ae8631d3d8" absoluteBounds="3.5, 3.25, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/OITdataDataContext/clientMaster" />
+      <nestedChildShapes>
+        <elementListCompartment Id="66bd1f4f-2693-4070-86a0-9ebe81864292" absoluteBounds="3.515, 3.71, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b6adaf80-ca5a-4b09-81d5-71df190b4170" absoluteBounds="0.75, 4.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/OITdataDataContext/domainMaster" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38f2a091-34e8-4043-aec3-57d4a3776be6" absoluteBounds="0.765, 5.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fead91b4-35b8-4cc5-a23e-16a6e43148ae" absoluteBounds="6.25, 4.375, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/OITdataDataContext/emailSendingHistory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0f034b73-8579-452f-9fda-2564b321b1bb" absoluteBounds="6.265, 4.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="551e0acd-5bde-4ea8-a7f4-d04c86a6075a" absoluteBounds="0.75, 0.75, 2, 3.1170068359375005">
+      <DataClassMoniker Name="/OITdataDataContext/userMaster" />
+      <nestedChildShapes>
+        <elementListCompartment Id="63c1e8ce-a0ab-48f8-9f9e-2ba45c0b0604" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 5.34699625651042); (3.5 : 5.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OITdataDataContext/domainMaster/domainMaster_clientMaster" />
+      <nodes>
+        <classShapeMoniker Id="b6adaf80-ca5a-4b09-81d5-71df190b4170" />
+        <classShapeMoniker Id="5c9f750a-7567-4aee-9c7d-37ae8631d3d8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.35659912109375); (6.25 : 5.35659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OITdataDataContext/clientMaster/clientMaster_emailSendingHistory" />
+      <nodes>
+        <classShapeMoniker Id="5c9f750a-7567-4aee-9c7d-37ae8631d3d8" />
+        <classShapeMoniker Id="fead91b4-35b8-4cc5-a23e-16a6e43148ae" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.55850341796875); (3.5 : 3.55850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/OITdataDataContext/userMaster/userMaster_clientMaster" />
+      <nodes>
+        <classShapeMoniker Id="551e0acd-5bde-4ea8-a7f4-d04c86a6075a" />
+        <classShapeMoniker Id="5c9f750a-7567-4aee-9c7d-37ae8631d3d8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
