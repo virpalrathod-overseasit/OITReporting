@@ -26,21 +26,21 @@
         <elementListCompartment Id="63c1e8ce-a0ab-48f8-9f9e-2ba45c0b0604" absoluteBounds="0.765, 1.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 5.34699625651042); (3.5 : 5.34699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.34699625651042); (3.5 : 5.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OITdataDataContext/domainMaster/domainMaster_clientMaster" />
       <nodes>
         <classShapeMoniker Id="b6adaf80-ca5a-4b09-81d5-71df190b4170" />
         <classShapeMoniker Id="5c9f750a-7567-4aee-9c7d-37ae8631d3d8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 5.35659912109375); (6.25 : 5.35659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 5.35659912109375); (6.25 : 5.35659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OITdataDataContext/clientMaster/clientMaster_emailSendingHistory" />
       <nodes>
         <classShapeMoniker Id="5c9f750a-7567-4aee-9c7d-37ae8631d3d8" />
         <classShapeMoniker Id="fead91b4-35b8-4cc5-a23e-16a6e43148ae" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.55850341796875); (3.5 : 3.55850341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.55850341796875); (3.5 : 3.55850341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/OITdataDataContext/userMaster/userMaster_clientMaster" />
       <nodes>
         <classShapeMoniker Id="551e0acd-5bde-4ea8-a7f4-d04c86a6075a" />
