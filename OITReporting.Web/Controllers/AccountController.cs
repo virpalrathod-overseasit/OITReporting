@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OITReporting.Manager.DbModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +14,6 @@ namespace OITReporting.Web.Controllers
         {
             return View();
         }
+        
     }
 }
