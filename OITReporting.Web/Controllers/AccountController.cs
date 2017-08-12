@@ -14,6 +14,29 @@ namespace OITReporting.Web.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
         
+        public ActionResult Login(string txtEmail, string txtPassword)
+        {
+            OITdataDataContext db = new OITdataDataContext(@"Data Source=PATEL-PC;Initial Catalog=dbOITReporting;Integrated Security=True");
+            var loginresult = db.userMasters.Where(a => a.emailID == txtEmail && a.password == txtPassword).FirstOrDefault();
+             
+            if (loginresult!= null)
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
+            else
+            {
+                ViewBag.message = "Invalid Username and Password";
+                return View("Login");
+            }
+            
+            //return Json("Invalid Data",JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace OITReporting.Web.Controllers
 {
     public class HomeController : Controller
     {
+        //[Authorize]
         public ActionResult Dashboard()
         {
             return View();
