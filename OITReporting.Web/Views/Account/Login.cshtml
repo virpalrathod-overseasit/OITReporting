@@ -19,17 +19,23 @@ Author: Rathod Virpal
     <!-- Meta tag Keywords -->
     <!-- css files -->
     <link rel="stylesheet" href="~/Content/css/font-awesome1.css"> <!-- Font-Awesome-Icons-CSS -->
-    <link rel="stylesheet" href="~/Content/css/style1.css" type="text/css" media="all" /> <!-- Style-CSS -->
+    <link rel="stylesheet" href="~/Content/css/style1.css" type="text/css" media="all" />  
     <!-- //css files -->
     <!-- web-fonts -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700" rel="stylesheet">
     <!-- //web-fonts -->
+
+    
+    
 </head>
 <body>
     <!--header-->
     <div class="header-w3l">
-        <h1>Overseas IT Solution</h1>
+        <h1>
+            Welcome<br />
+            Overseas IT Solution
+        </h1>
     </div>
     <!--//header-->
     <!--main-->
@@ -37,13 +43,7 @@ Author: Rathod Virpal
         <!--form-stars-here-->
         <div class="wthree-form">
             <h2>Fill out the form below to login</h2>
-            <div>
-                @if (ViewBag.message != null)
-                {
-                    <script>alert('Hello');</script>
-                    
-                }
-            </div>
+
             <form role="form" method="post">
                 <div class="form-sub-w3">
                     <input type="text" name="txtEmail" placeholder="Username " required="" />
@@ -67,15 +67,22 @@ Author: Rathod Virpal
                     <input type="submit" name="btnSubmit" value="Login">
                 </div>
             </form>
-
+        </div>
+        <div style="padding-top:35px">
+            @if (ViewBag.message != null)
+            {
+                <div class="alert alert-danger alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <strong>Error! </strong> @ViewBag.message
+                </div>
+            }
         </div>
         <!--//form-ends-here-->
-
     </div>
     <!--//main-->
     <!--footer-->
     <div class="footer">
-        <p>&copy; 2017 Glassy Login Form. All rights reserved | Design by <a href="">W3layouts</a></p>
+        <p>&copy; 2017 Overseas IT Solutions. All rights reserved | Design by <a href="">Overseas Developer</a></p>
     </div>
     <!--//footer-->
 </body>
@@ -94,10 +101,8 @@ Author: Rathod Virpal
                 dataType: "JSON",
                 contentType: "application/json",
                 success: function (status) {
-                    
                 },
                 error: function () {
-
                 }
             })
         })
