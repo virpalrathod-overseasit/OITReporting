@@ -1,35 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OITReporting.Manager
 {
-    class userReg
+    [Table("userMaster")]
+    public class userReg
     {
-        [Required]
-        [Display(Name = "Name")]
-        public string  firstname{ get; set; }
-        [Required]
-        [Display(Name = "Name")]
-        public string lastname{ get; set; }
-        [Required]
-        [Display(Name = "Email id")]
-        [RegularExpression(@"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
-        ErrorMessage = "Please enter correct email address")]
-        public string emailid{ get; set; }
-        [Display(Name = "Password")]
+        [Display(Name ="First Name")]
+        [Required(ErrorMessage = "Please enter first name", AllowEmptyStrings = false)]
+        public string firstName { get; set; }
 
-        [DataType(DataType.Password)]
+        [Display(Name ="Last Name")]
+        [Required(ErrorMessage = "Please enter last name", AllowEmptyStrings = false)]
+        public string lastName { get; set; }
 
-        [Required(ErrorMessage = "Password required")]
-        public string Userpassword { set; get; }
-        [Display(Name = "Confirm new password")]
-        [Required(ErrorMessage = "Enter Confirm Password")]
-        [Compare("Userpassword", ErrorMessage = "The password and confirmation password do not match.")]
-        [DataType(DataType.Password)]
-        public string c_pwd { get; set; }
+        [Display(Name ="Date of Birth")]
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "Please select your date of birth", AllowEmptyStrings = false)]
+        public DateTime dob { get; set; }
+
+        [Display(Name ="Gender")]
+        [Required(ErrorMessage = "Please select your gender", AllowEmptyStrings = false)]
+        public string gender { get; set; }
+
+        [Display(Name ="Address")]
+        [Required(ErrorMessage = "Please enter residental address", AllowEmptyStrings = false)]
+        public string address { get; set; }
+
+        [Display(Name ="Country")]
+        [Required(ErrorMessage = "Please select country", AllowEmptyStrings = false)]
+        public int country { get; set; }
+
+        [Display(Name = "State")]
+        [Required(ErrorMessage = "Please select state", AllowEmptyStrings = false)]
+        public string state { get; set; }
+
+        [Display(Name = "City")]
+        [Required(ErrorMessage = "Please select city", AllowEmptyStrings = false)]
+        public string city { get; set; }
+
+        [Required(ErrorMessage = "Please enter contact number", AllowEmptyStrings = false)]
+        [Display(Name = "Contact No.")]
+        [DataType(DataType.PhoneNumber)]
+        public Decimal contactNo { get; set; }
+        
+        [Display(Name ="Email")]
+        [Required(ErrorMessage ="Please enter email address", AllowEmptyStrings = false)]
+        [EmailAddress(ErrorMessage ="Entered email address is invalid")]
+        public string emailID { get; set; }
+
+        [Display(Name ="Password")]
+        [Required(ErrorMessage ="Please enter password", AllowEmptyStrings = false)]
+        public string password { get; set; }
+
+        [Display(Name ="Confirm Password")]
+        [Required(ErrorMessage ="Please eneter confirm password", AllowEmptyStrings = false)]
+        [Compare("password",ErrorMessage ="Entered confirm password does not match")]
+        public string confirmPassword { get; set; }
     }
 }
