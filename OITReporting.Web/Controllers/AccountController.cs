@@ -22,7 +22,7 @@ namespace OITReporting.Web.Controllers
         [HttpPost]
         public ActionResult Login(string txtEmail, string txtPassword)
         {
-            OITdataDataContext db = new OITdataDataContext(@"Data Source=PATEL-PC;Initial Catalog=dbOITReporting;Integrated Security=True");
+            OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True");
             var loginresult = db.userMasters.Where(a => a.emailID == txtEmail && a.password == txtPassword).FirstOrDefault();
             if (loginresult!= null)
             {

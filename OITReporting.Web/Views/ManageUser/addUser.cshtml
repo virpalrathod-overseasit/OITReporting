@@ -127,9 +127,9 @@
                                     <div class="col-sm-8">
                                         @{
                                             var country = new List<SelectListItem> {
-                                                new SelectListItem { Text = "India", Value = "India" },
-                                                new SelectListItem { Text = "United State of America", Value = "United State of America" },
-                                                new SelectListItem { Text = "Canada", Value = "Canada" } };
+                                                new SelectListItem { Text = "India", Value = "1" },
+                                                new SelectListItem { Text = "United State of America", Value = "2" },
+                                                new SelectListItem { Text = "Canada", Value = "3" } };
                                         }
                                         @Html.DropDownListFor(model => model.country, country, "Select Country", htmlAttributes: new { @class = "form-control1" })
                                     </div>

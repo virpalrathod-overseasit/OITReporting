@@ -1,0 +1,115 @@
+﻿@model OITReporting.Manager.DbModel.userMaster
+
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Edit User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.userId)
+        <div class="form-group">
+            <div class="input-group col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    First Name
+                </span>
+                @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="input-group col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    Last Name
+                </span>
+                @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="input-group date col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    Date Of Birth
+                </span>
+                @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control"} })
+            </div>
+            @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="input-group date col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    Gender
+                </span>
+              
+                @Html.RadioButtonFor(model => model.gender, "Male", htmlAttributes: new { }) Male
+                @Html.RadioButtonFor(model => model.gender, "Female", htmlAttributes: new { }) Female
+            </div>
+        </div>
+        <div class="form-group">
+                <div class="input-group col-md-8 col-md-offset-1">
+                    <span class="input-group-addon">
+                        Address
+                    </span>
+                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="input-group col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    City
+                </span>
+                @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="input-group col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    State
+                </span>
+                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="input-group col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    Phone
+                </span>
+                @Html.EditorFor(model => model.contactNo, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.contactNo, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="input-group col-md-8 col-md-offset-1">
+                <span class="input-group-addon">
+                    Email Id
+                </span>
+                @Html.EditorFor(model => model.emailID, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            @Html.ValidationMessageFor(model => model.emailID, "", new { @class = "text-danger" })
+        </div>
+
+            
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default btn btn-success" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index",new { htmlAttributes = new { @class = "btn btn-primary" } })
+</div>

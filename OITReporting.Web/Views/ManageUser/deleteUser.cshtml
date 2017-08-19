@@ -1,0 +1,104 @@
+﻿@model OITReporting.Manager.DbModel.userMaster
+
+@{
+    ViewBag.Title = "deleteUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<div class="col-md-12">
+    <h2 class="btn-danger col-md-4">Delete User</h2>
+</div>
+<br />
+<br />
+<br />
+<h3 >Are you sure you want to delete this ?</h3>
+
+<div>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>
+           First Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+           Last Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            Date Of Birth
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dob)
+        </dd>
+
+        <dt>
+            Gender
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            Address
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            City
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+           State
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.state)
+        </dd>
+
+        
+        <dt>
+           Phone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactNo)
+        </dd>
+
+        <dt>
+            Email Id
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.emailID)
+        </dd>
+
+        
+
+    </dl>
+    <br /><br /><br />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
