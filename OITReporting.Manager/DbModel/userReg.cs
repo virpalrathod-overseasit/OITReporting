@@ -11,6 +11,8 @@ namespace OITReporting.Manager
     [Table("userMaster")]
     public class userReg
     {
+        public int userId{ get; set; }
+
         [Display(Name ="First Name")]
         [Required(ErrorMessage = "Please enter first name", AllowEmptyStrings = false)]
         public string firstName { get; set; }
@@ -34,7 +36,7 @@ namespace OITReporting.Manager
 
         [Display(Name ="Country")]
         [Required(ErrorMessage = "Please select country", AllowEmptyStrings = false)]
-        public int country { get; set; }
+        public int countryId { get; set; }
 
         [Display(Name = "State")]
         [Required(ErrorMessage = "Please select state", AllowEmptyStrings = false)]
@@ -47,7 +49,7 @@ namespace OITReporting.Manager
         [Required(ErrorMessage = "Please enter contact number", AllowEmptyStrings = false)]
         [Display(Name = "Contact No.")]
         [DataType(DataType.PhoneNumber)]
-        public Decimal contactNo { get; set; }
+        public int  contactNo { get; set; }
         
         [Display(Name ="Email")]
         [Required(ErrorMessage ="Please enter email address", AllowEmptyStrings = false)]

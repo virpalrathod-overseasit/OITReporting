@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -143,8 +144,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageUserController.cs" />
+    <Compile Include="Controllers\UserManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +172,12 @@
     <Content Include="Content\css\style1.css" />
     <Content Include="Content\css\style_grid.css" />
     <Content Include="Content\css\table-style.css" />
+    <Content Include="Content\css\user\bootstrap-theme.css" />
+    <Content Include="Content\css\user\bootstrap-theme.min.css" />
+    <Content Include="Content\css\user\bootstrap.css" />
+    <Content Include="Content\css\user\bootstrap.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\a1.jpg" />
     <Content Include="Content\images\a2.jpg" />
     <Content Include="Content\images\a3.jpg" />
@@ -182,6 +191,7 @@
     <Content Include="Content\images\profile.jpg" />
     <Content Include="Content\images\profile_bg.jpg" />
     <Content Include="Content\images\progress.jpg" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -224,10 +234,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\amcharts.js" />
     <Content Include="Scripts\bars.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -235,18 +242,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\fonts\FontAwesome.otf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\images\Thumbs.db" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\circles.js" />
     <Content Include="Scripts\classie.js" />
+    <Content Include="Scripts\client\client.js" />
+    <None Include="Scripts\client\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\contact_me.js" />
     <Content Include="Scripts\export.js" />
     <Content Include="Scripts\flipclock.js" />
@@ -254,10 +256,24 @@
     <Content Include="Scripts\gnmenu.js" />
     <Content Include="Scripts\jqBootstrapValidation.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\css\user\bootstrap-theme.css.map" />
+    <Content Include="Content\css\user\bootstrap-theme.min.css.map" />
+    <Content Include="Content\css\user\bootstrap.css.map" />
+    <Content Include="Content\css\user\bootstrap.min.css.map" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\images\Thumbs.db" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -286,6 +302,14 @@
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\serial.js" />
     <Content Include="Scripts\skycons.js" />
+    <Content Include="Scripts\user\bootstrap.js" />
+    <Content Include="Scripts\user\bootstrap.min.js" />
+    <None Include="Scripts\user\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\user\jquery-1.9.1.js" />
+    <Content Include="Scripts\user\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\user\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\user\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\user\user.js" />
     <Content Include="Scripts\valida.2.1.6.min.js" />
     <Content Include="Scripts\validator.min.js" />
     <Content Include="Scripts\xy.js" />
@@ -312,20 +336,13 @@
     <Content Include="Views\ManageUser\Index.cshtml" />
     <Content Include="Views\ManageUser\addUser.cshtml" />
     <Content Include="Views\ManageUser\editUser.cshtml" />
-    <Content Include="Views\ManageUser\deleteUser.cshtml" />
+    <Content Include="Scripts\user\jquery-1.9.1.min.map" />
+    <Content Include="Views\UserManager\Index.cshtml" />
+    <Content Include="Views\ClientManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

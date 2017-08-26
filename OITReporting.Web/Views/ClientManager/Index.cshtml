@@ -1,0 +1,115 @@
+﻿@model OITReporting.Manager.DbModel.clientMaster
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<script src="~/Scripts/user/jquery-1.9.1.intellisense.js"></script>
+<script src="~/Scripts/user/jquery-1.9.1.js"></script>
+<script src="~/Scripts/user/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/user/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/user/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/client/client.js"></script>
+
+<div class="container">
+    <br />
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New Client</button><br /><br />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Client ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Email Id
+                </th>
+                <th>
+                    Company Name
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">&times;</span></button>*@
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Add Client</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label for="clientId">Client Id</label>
+                            <input type="text" class="form-control" id="clientId" placeholder="Client Id" disabled="disabled" />
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="userId">User Id</label>
+                            <input type="text" class="form-control" id="userId" placeholder="User Id" disabled="disabled"  value="@ViewBag.userid"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="domainId">Domain</label>
+                            @Html.DropDownList("domainlist", ViewData["domain"] as SelectList, "Select Domain", htmlAttributes: new { @class = "radio", id = "domainId" })
+                        </div>                 
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 col-sm-offset-0">
+                            <label for="status">Status</label>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label>
+                                @Html.RadioButtonFor(model=>model.status, "Active", htmlAttributes: new { @class = "radio", id = "status" }) Active
+                            </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label>
+                                @Html.RadioButtonFor(model=>model.status, "Deactive", htmlAttributes: new { @class = "radio", id = "status" }) Deactive
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailId">Email Id</label>
+                            @Html.TextBoxFor(model => model.emailId, string.Empty, htmlAttributes: new { type = "email", @class = "form-control", id = "emailId", placeholder = "Enter Email Address" })
+                        </div>
+                        <div class="form-group">
+                            <label for="companyName">Company Name</label>
+                            @Html.TextBoxFor(model => model.companyName, string.Empty, htmlAttributes: new { @class = "form-control", id = "companyName", placeholder = "Enter Company Name" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ContactPersonName">Person Name</label>
+                            @Html.TextBoxFor(model => model.ContactPersonName, string.Empty, htmlAttributes: new { @class = "form-control", id = "ContactPersonName", placeholder = "Enter Contact Person Name" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ContactPersonDesignation">Designation</label>
+                            @Html.TextBoxFor(model => model.ContactPersonDesignation, string.Empty, htmlAttributes: new { @class = "form-control", id = "ContactPersonDesignation", placeholder = "Enter Designation" })
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

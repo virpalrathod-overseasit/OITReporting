@@ -70,6 +70,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="gn-scroller scrollbar1">
                             <ul class="gn-menu agile_menu_drop">
                                 <li><a href="~/Home/Dashboard"> <i class="fa fa-tachometer"></i> Dashboard</a></li>
+                                @if(ViewBag.user=="admin")
+                                {
                                 <li>
                                     <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Manage User <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="gn-submenu">
@@ -77,6 +79,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <li class="mini_list_w3"><a href="~/ManageUser/addUser"> <i class="fa fa-user-plus" aria-hidden="true"></i> Add User</a></li>
                                     </ul>
                                 </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Manage Client <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                        <ul class="gn-submenu">
+                                            <li class="mini_list_agile"><a href="~/ManageUser/Index"><i class="fa fa-user-times" aria-hidden="true"></i> Show Client</a></li>
+                                            <li class="mini_list_w3"><a href="~/ManageUser/addUser"> <i class="fa fa-user-plus" aria-hidden="true"></i> Add Client</a></li>
+                                        </ul>
+                                    </li>
+                                }
                                 <li>
                                     <a href="#"> <i class="fa fa-file-text-o" aria-hidden="true"></i>Forms <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="gn-submenu">

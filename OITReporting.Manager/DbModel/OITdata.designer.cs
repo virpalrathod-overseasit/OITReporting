@@ -22,7 +22,7 @@ namespace OITReporting.Manager.DbModel
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="OITReporting")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dbIOTReporting")]
 	public partial class OITdataDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -45,7 +45,7 @@ namespace OITReporting.Manager.DbModel
     #endregion
 		
 		public OITdataDataContext() : 
-				base(global::OITReporting.Manager.Properties.Settings.Default.OITReportingConnectionString, mappingSource)
+				base(global::OITReporting.Manager.Properties.Settings.Default.dbIOTReportingConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -104,6 +104,34 @@ namespace OITReporting.Manager.DbModel
 			{
 				return this.GetTable<userMaster>();
 			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectUser")]
+		public ISingleResult<SelectUserResult> SelectUser()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SelectUserResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.InsertUpdateUser")]
+		public int InsertUpdateUser([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> userId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string firstName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(50)")] string lastName, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> dob, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string gender, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(MAX)")] string address, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string city, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string state, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> countryId, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> contactNo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(80)")] string emailID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(20)")] string password, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Action", DbType="VarChar(10)")] string action)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userId, firstName, lastName, dob, gender, address, city, state, countryId, contactNo, emailID, password, action);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.DeleteUser")]
+		public int DeleteUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Id", DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SelectClient")]
+		public ISingleResult<SelectClientResult> SelectClient()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<SelectClientResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -1355,6 +1383,544 @@ namespace OITReporting.Manager.DbModel
 		{
 			this.SendPropertyChanging();
 			entity.userMaster = null;
+		}
+	}
+	
+	public partial class SelectUserResult
+	{
+		
+		private int _userId;
+		
+		private string _firstName;
+		
+		private string _lastName;
+		
+		private System.DateTime _dob;
+		
+		private string _gender;
+		
+		private string _address;
+		
+		private string _city;
+		
+		private string _state;
+		
+		private int _countryId;
+		
+		private int _contactNo;
+		
+		private string _emailID;
+		
+		private string _password;
+		
+		public SelectUserResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="Int NOT NULL")]
+		public int userId
+		{
+			get
+			{
+				return this._userId;
+			}
+			set
+			{
+				if ((this._userId != value))
+				{
+					this._userId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_firstName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string firstName
+		{
+			get
+			{
+				return this._firstName;
+			}
+			set
+			{
+				if ((this._firstName != value))
+				{
+					this._firstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string lastName
+		{
+			get
+			{
+				return this._lastName;
+			}
+			set
+			{
+				if ((this._lastName != value))
+				{
+					this._lastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dob", DbType="Date NOT NULL")]
+		public System.DateTime dob
+		{
+			get
+			{
+				return this._dob;
+			}
+			set
+			{
+				if ((this._dob != value))
+				{
+					this._dob = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gender", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string gender
+		{
+			get
+			{
+				return this._gender;
+			}
+			set
+			{
+				if ((this._gender != value))
+				{
+					this._gender = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string address
+		{
+			get
+			{
+				return this._address;
+			}
+			set
+			{
+				if ((this._address != value))
+				{
+					this._address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this._city = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this._state = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_countryId", DbType="Int NOT NULL")]
+		public int countryId
+		{
+			get
+			{
+				return this._countryId;
+			}
+			set
+			{
+				if ((this._countryId != value))
+				{
+					this._countryId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactNo", DbType="Int NOT NULL")]
+		public int contactNo
+		{
+			get
+			{
+				return this._contactNo;
+			}
+			set
+			{
+				if ((this._contactNo != value))
+				{
+					this._contactNo = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailID", DbType="NVarChar(80) NOT NULL", CanBeNull=false)]
+		public string emailID
+		{
+			get
+			{
+				return this._emailID;
+			}
+			set
+			{
+				if ((this._emailID != value))
+				{
+					this._emailID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this._password = value;
+				}
+			}
+		}
+	}
+	
+	public partial class SelectClientResult
+	{
+		
+		private int _clientId;
+		
+		private int _userId;
+		
+		private int _domainId;
+		
+		private string _status;
+		
+		private string _emailId;
+		
+		private string _companyName;
+		
+		private string _ContactPersonName;
+		
+		private string _ContactPersonDesignation;
+		
+		private decimal _contactPersonContactNo1;
+		
+		private System.Nullable<decimal> _contactPersonContactNo2;
+		
+		private System.Nullable<decimal> _companyCellPhone;
+		
+		private string _address;
+		
+		private string _city;
+		
+		private string _state;
+		
+		private int _counytryId;
+		
+		private System.Nullable<bool> _isResponded;
+		
+		private System.Nullable<bool> _isUnsubscribe;
+		
+		public SelectClientResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_clientId", DbType="Int NOT NULL")]
+		public int clientId
+		{
+			get
+			{
+				return this._clientId;
+			}
+			set
+			{
+				if ((this._clientId != value))
+				{
+					this._clientId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_userId", DbType="Int NOT NULL")]
+		public int userId
+		{
+			get
+			{
+				return this._userId;
+			}
+			set
+			{
+				if ((this._userId != value))
+				{
+					this._userId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_domainId", DbType="Int NOT NULL")]
+		public int domainId
+		{
+			get
+			{
+				return this._domainId;
+			}
+			set
+			{
+				if ((this._domainId != value))
+				{
+					this._domainId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string status
+		{
+			get
+			{
+				return this._status;
+			}
+			set
+			{
+				if ((this._status != value))
+				{
+					this._status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_emailId", DbType="NVarChar(80) NOT NULL", CanBeNull=false)]
+		public string emailId
+		{
+			get
+			{
+				return this._emailId;
+			}
+			set
+			{
+				if ((this._emailId != value))
+				{
+					this._emailId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_companyName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string companyName
+		{
+			get
+			{
+				return this._companyName;
+			}
+			set
+			{
+				if ((this._companyName != value))
+				{
+					this._companyName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonName", DbType="NVarChar(80) NOT NULL", CanBeNull=false)]
+		public string ContactPersonName
+		{
+			get
+			{
+				return this._ContactPersonName;
+			}
+			set
+			{
+				if ((this._ContactPersonName != value))
+				{
+					this._ContactPersonName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactPersonDesignation", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string ContactPersonDesignation
+		{
+			get
+			{
+				return this._ContactPersonDesignation;
+			}
+			set
+			{
+				if ((this._ContactPersonDesignation != value))
+				{
+					this._ContactPersonDesignation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactPersonContactNo1", DbType="Decimal(10,0) NOT NULL")]
+		public decimal contactPersonContactNo1
+		{
+			get
+			{
+				return this._contactPersonContactNo1;
+			}
+			set
+			{
+				if ((this._contactPersonContactNo1 != value))
+				{
+					this._contactPersonContactNo1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_contactPersonContactNo2", DbType="Decimal(10,0)")]
+		public System.Nullable<decimal> contactPersonContactNo2
+		{
+			get
+			{
+				return this._contactPersonContactNo2;
+			}
+			set
+			{
+				if ((this._contactPersonContactNo2 != value))
+				{
+					this._contactPersonContactNo2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_companyCellPhone", DbType="Decimal(10,0)")]
+		public System.Nullable<decimal> companyCellPhone
+		{
+			get
+			{
+				return this._companyCellPhone;
+			}
+			set
+			{
+				if ((this._companyCellPhone != value))
+				{
+					this._companyCellPhone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string address
+		{
+			get
+			{
+				return this._address;
+			}
+			set
+			{
+				if ((this._address != value))
+				{
+					this._address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_city", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string city
+		{
+			get
+			{
+				return this._city;
+			}
+			set
+			{
+				if ((this._city != value))
+				{
+					this._city = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_state", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string state
+		{
+			get
+			{
+				return this._state;
+			}
+			set
+			{
+				if ((this._state != value))
+				{
+					this._state = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_counytryId", DbType="Int NOT NULL")]
+		public int counytryId
+		{
+			get
+			{
+				return this._counytryId;
+			}
+			set
+			{
+				if ((this._counytryId != value))
+				{
+					this._counytryId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isResponded", DbType="Bit")]
+		public System.Nullable<bool> isResponded
+		{
+			get
+			{
+				return this._isResponded;
+			}
+			set
+			{
+				if ((this._isResponded != value))
+				{
+					this._isResponded = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isUnsubscribe", DbType="Bit")]
+		public System.Nullable<bool> isUnsubscribe
+		{
+			get
+			{
+				return this._isUnsubscribe;
+			}
+			set
+			{
+				if ((this._isUnsubscribe != value))
+				{
+					this._isUnsubscribe = value;
+				}
+			}
 		}
 	}
 }

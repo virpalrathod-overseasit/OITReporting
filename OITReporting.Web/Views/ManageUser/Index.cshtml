@@ -40,8 +40,9 @@
                                     <td>@Html.DisplayFor(modelItem => item.emailID)</td>
                                     <td align="center">
                       
-                                        <a class="btn btn-default popup" href="/ManageUser/editUser/@item.userId"><em class="fa fa-pencil"></em></a>
-                                        <a class="btn btn-danger popup" href="/ManageUser/deleteUser/@item.userId" onclick="return delete();"><em class="fa fa-trash"></em></a>
+                                        <a class="btn btn-default" href="/ManageUser/editUser/@item.userId"><em class="fa fa-pencil"></em></a>
+                                        <a class="btn btn-danger delete" href="/ManageUser/deleteUser/@item.userId" ><em class="fa fa-trash"></em></a>
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.userId }, new { @class = "confirmDialog"})
                                     </td>
                                 </tr>
                             }
@@ -73,44 +74,32 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
-    function EditProduct(pid) {
-        var ph = $("#DivToAppendPartialVoew");
-        ph.load("/Products/edit?productid=" + pid, function () {
-            ph.dialog({
+    $(document).ready(function () {
+        $(".confirmDialog").live("click", function (e) {
+            var url = $(this).attr('href');
+            $("#dialog-confirm").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: 170,
+                width: 350,
+                show: { effect: 'drop', direction: "up" },
                 modal: true,
-                width: 500,
-                height: 438,
-                title: "Edit Product",
-                resizable: false
+                draggable: true,
+                buttons: {
+                    "OK": function () {
+                        $(this).dialog("close");
+                        window.location = url;
+
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+
+                    }
+                }
             });
-        });
-    }
 
-    function DeleteProduct(pid) {
-        if (confirm("Do you want to delete product: " + pid)) {
-            var data = { 'ProductId': pid }
-            $.post('/Products/Delete', data,
-                function (data) {
-                    if (data == true)
-                        location = location.href;
-                    else
-                        alert("Could not delete");
-                });
-        }
-    }
 
-    function OpenCreatePopup() {
-        var div = $("#DivToAppendPartialVoew");
-        div.load("/Products/Create", function () {
-            div.dialog({
-                modal: true,
-                width: 500,
-                height: 438,
-                title: "Add New Product",
-                resizable: false
-            });
-        });
-    }
-
+    })
 </script>

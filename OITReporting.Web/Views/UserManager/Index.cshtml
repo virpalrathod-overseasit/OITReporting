@@ -1,0 +1,148 @@
+﻿@model OITReporting.Manager.DbModel.userMaster
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!--<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>-->
+    <script src="~/Scripts/user/jquery-1.9.1.js"></script>
+    <script src="~/Scripts/user/bootstrap.js"></script>
+    @*<link href="~/Content/css/user/bootstrap.css" rel="stylesheet" />*@
+    <script src="~/Scripts/user/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/user/user.js"></script>
+<!--</head>
+<body>-->
+    <div class="container">
+        <br />
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Add New User</button><br /><br />
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        USer ID
+                    </th>
+                    <th>
+                        FirstName
+                    </th>
+                    <th>
+                       Gender
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Email ID
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">&times;</span></button>*@
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Add User</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="userId">ID</label>
+                            <input type="text" class="form-control" id="userID" placeholder="Id" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            @Html.TextBoxFor(model => model.firstName, htmlAttributes: new { @class = "form-control", id = "firstName", placeholder = "Enter First Name" })
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            @Html.TextBoxFor(model => model.lastName, htmlAttributes: new { @class = "form-control", id = "lastName", placeholder = "Enter Last Name" })
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date Of Birth</label>
+                            @Html.TextBoxFor(model => model.dob, htmlAttributes: new { @class = "form-control", type = "date", id = "dob" })
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <label for="gender">Gender</label>
+                            </div>
+                            
+                            <div class="col-sm-4 col-sm-offset-4">
+                                <label>
+                                    @Html.RadioButtonFor(model => model.gender, "Male", htmlAttributes: new { @class = "radio", id = "gender" }) Male
+                                </label>
+                                </div>
+                            <div class="col-sm-4 ">
+                                <label>
+                                    @Html.RadioButtonFor(model => model.gender, "Female", htmlAttributes: new { @class = "radio", id = "gender" }) Female
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            @Html.TextAreaFor(model => model.address, 5, 5, htmlAttributes: new { @class = "form-control", id = "address" })
+                        </div>
+                        
+                        <div class="form-group col-sm-4">
+                            <label for="country">Country</label>
+                            @{
+                                var country = new List<SelectListItem> {
+                                                new SelectListItem { Text = "India", Value = "1" },
+                                                new SelectListItem { Text = "United State of America", Value = "2" },
+                                                new SelectListItem { Text = "Canada", Value = "3" } };
+                            }
+                            @Html.DropDownListFor(model => model.countryId, country, "Select Country", htmlAttributes: new { @class = "form-control1", id = "cou" })
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="state">State</label>
+                            @{
+                                var state = new List<SelectListItem> {
+                                                new SelectListItem { Text = "Gujarat", Value = "Gujarat" },
+                                                new SelectListItem { Text = "Maharastra", Value = "Maharastra" },
+                                                new SelectListItem { Text = "Panjab", Value = "Panjab" } };
+                            }
+                            @Html.DropDownListFor(model => model.state, state, "Select State", htmlAttributes: new { @class = "form-control1", id = "state" })
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="city">City</label>
+                            @{
+                                var city = new List<SelectListItem> { new SelectListItem { Text = "Ahmedabad", Value = "Ahmedabad" },
+                                                new SelectListItem { Text = "Gandhinagar", Value = "Gandhinagar" },
+                                                new SelectListItem { Text = "Kalol", Value = "Kalol" } };
+                            }
+                            @Html.DropDownListFor(model => model.city, city, "Select City", htmlAttributes: new { @class = "form-control1", id = "city" })
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNo">Phone</label>
+                            @Html.TextBoxFor(model => model.contactNo, string.Empty, htmlAttributes: new { type = "number", maxlength = "10", @class = "form-control1", id = "contactNo", placeholder = "Enter 10 digit mobile number" })
+                        </div>
+                        <div class="form-group">
+                            <label for="emailId">Email Id</label>
+                            @Html.TextBoxFor(model => model.emailID, string.Empty, htmlAttributes: new { type = "email", @class = "form-control", id = "emailId", placeholder = "Enter Email Address" })
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                           @Html.PasswordFor(model => model.password, htmlAttributes: new { @class = "form-control1", id = "password", placeholder = "Enter Password" })
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                    <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@*</body>
+</html>*@

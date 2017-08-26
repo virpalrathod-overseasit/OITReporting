@@ -1,0 +1,1 @@
+﻿select convert (varchar,[dob],103) from userMaster

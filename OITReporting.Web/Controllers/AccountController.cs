@@ -22,17 +22,37 @@ namespace OITReporting.Web.Controllers
         [HttpPost]
         public ActionResult Login(string txtEmail, string txtPassword)
         {
-            OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True");
-            var loginresult = db.userMasters.Where(a => a.emailID == txtEmail && a.password == txtPassword).FirstOrDefault();
-            if (loginresult!= null)
+            /*if (txtEmail == "admin" && txtPassword == "admin")
             {
-                return RedirectToAction("Dashboard", "Home");
+                
+       
+                if (txtEmail != null && txtPassword != null)
+                {
+                    ViewBag.user = "user";
+                    return RedirectToAction("Dashboard", "Home");
+                }
+                else
+                {
+                    ViewBag.message = "Invalid Username and Password";
+                    return View("Login");
+                }
             }
             else
-            {
-                ViewBag.message = "Invalid Username and Password";
-                return View("Login");
-            }            
+            {*/
+                OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True");
+                var loginresult = db.userMasters.Where(a => a.emailID == txtEmail && a.password == txtPassword).FirstOrDefault();
+                if (loginresult != null)
+                {
+                    Session["UserProfile"] = loginresult;
+                    ViewBag.user = "user";
+                    return RedirectToAction("Dashboard", "Home");
+                }
+                else
+                {
+                    ViewBag.message = "Invalid Username and Password";
+                    return View("Login");
+                }
+            //}
             //return Json("Invalid Data",JsonRequestBehavior.AllowGet);
         }
     }

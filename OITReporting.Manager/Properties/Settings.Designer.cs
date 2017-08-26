@@ -32,5 +32,15 @@ namespace OITReporting.Manager.Properties {
                 return ((string)(this["OITReportingConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True")]
+        public string dbIOTReportingConnectionString {
+            get {
+                return ((string)(this["dbIOTReportingConnectionString"]));
+            }
+        }
     }
 }

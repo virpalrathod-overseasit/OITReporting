@@ -13,8 +13,8 @@ namespace OITReporting.Web.Controllers
         {
 
             OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True");
-            var employees = db.userMasters.OrderBy(emp => emp.firstName).ToList();
-            return View(employees);
+            var user = db.userMasters.OrderBy(emp => emp.firstName).ToList();
+            return View(user);
         }
 
 
@@ -25,7 +25,7 @@ namespace OITReporting.Web.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult addUser(userReg ur)
+        public ActionResult addUser(userMaster ur)
         {
             if (!ModelState.IsValid)
             {
@@ -41,7 +41,7 @@ namespace OITReporting.Web.Controllers
             um.address = ur.address;
             um.city = ur.city;
             um.state = ur.state;
-            um.countryId = ur.country;
+            um.countryId = ur.countryId;
             um.contactNo = ur.contactNo;
             um.emailID = ur.emailID;
             um.password = ur.password;
@@ -102,56 +102,56 @@ namespace OITReporting.Web.Controllers
         }
 
 
-
+        [HttpGet]
         public ActionResult deleteUser(int id)
         {
             using (OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True"))
             {
-                var v = db.userMasters.Where(a => a.userId == id).FirstOrDefault();
-                if (v != null)
+               userMaster user = db.userMasters.Where(a => a.userId == id).FirstOrDefault();
+                if (user != null)
                 {
-                    db.userMasters.DeleteOnSubmit(v);
-                    db.SubmitChanges();
-                    return View("Index");
+                  
+                    return View(user);
                 }
                 else
                 {
                     return HttpNotFound();
-                }
 
+                }
+                
             }
         }
-        /*
-    [HttpPost]
-    public ActionResult delteUser(userMaster ur)
-    {
 
-
-       using (OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True"))
-         {
-             userMaster v = db.userMasters.Where(x => x.userId == ur.userId).Single<userMaster>();
-             db.userMasters.DeleteOnSubmit(ur);
-             db.SubmitChanges();
-             return RedirectToAction("Index");
-         }
-
-        using (OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True"))
+        [HttpPost]
+        public ActionResult delteUser(int id,userMaster ur)
         {
-            var v = db.userMasters.Where(a => a.userId == id).FirstOrDefault();
-            if (v != null)
-            {
 
-                db.userMasters.DeleteOnSubmit(v);
+
+            using (OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True"))
+            {
+                userMaster v = db.userMasters.Where(x => x.userId == ur.userId).Single<userMaster>();
+                db.userMasters.DeleteOnSubmit(ur);
                 db.SubmitChanges();
-                RedirectToAction("Index");
-            }
-            else
-            {
-                return View("deleteUser");
+                return RedirectToAction("Index", "ManageUser");
             }
 
-        */
-       
+            /* using (OITdataDataContext db = new OITdataDataContext(@"Data Source=.;Initial Catalog=dbIOTReporting;Integrated Security=True"))
+           {
+               var v = db.userMasters.Where(a => a.userId == id).FirstOrDefault();
+               if (v != null)
+               {
+
+                   db.userMasters.DeleteOnSubmit(v);
+                   db.SubmitChanges();
+                   RedirectToAction("Index");
+               }
+               else
+               {
+                   return View("deleteUser");
+               }
+
+           */
+
+        }
     }
 }
-
